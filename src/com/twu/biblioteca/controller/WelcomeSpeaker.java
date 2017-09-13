@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.controller;
 
 import java.io.PrintStream;
 
@@ -9,7 +9,7 @@ public class WelcomeSpeaker {
         this.printStream = printStream;
     }
 
-    void sayWelcome() {
+    public void sayWelcome() {
         printStream.println("Welcome to Bangalore Public Library!");
     }
 }

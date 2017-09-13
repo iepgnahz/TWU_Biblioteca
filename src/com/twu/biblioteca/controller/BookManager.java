@@ -1,6 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.controller;
 
-import java.util.ArrayList;
+import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.repository.BookRepository;
+
 import java.util.List;
 
 public class BookManager {

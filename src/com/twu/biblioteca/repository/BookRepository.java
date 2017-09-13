@@ -1,9 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.repository;
+
+import com.twu.biblioteca.entity.Book;
 
 import java.util.List;
 
 public interface BookRepository {
     List<Book> getBooks();
-
-    Book getBookById(int id);
 }

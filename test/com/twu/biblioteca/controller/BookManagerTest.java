@@ -1,5 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.controller;
 
+import com.twu.biblioteca.controller.BookManager;
+import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.repository.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -24,8 +27,8 @@ public class BookManagerTest {
     @Test
     public void get_book_list_should_return_book_list_when_there_are_books_in_library() throws Exception {
         List<Book> mockBookList = new ArrayList<>();
-        Book book1 = new Book();
-        Book book2 = new Book();
+        Book book1 = new Book("test1","author1","2017");
+        Book book2 = new Book("test2","author2","2017");
 
         mockBookList.add(book1);
         mockBookList.add(book2);
