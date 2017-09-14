@@ -1,12 +1,14 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.BookManager;
+import com.twu.biblioteca.controller.MenuManager;
 import com.twu.biblioteca.controller.WelcomeSpeaker;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.BookRepositoryImp;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class BibliotecaApp {
     public static void main(String[] args) {
@@ -18,20 +20,18 @@ public class BibliotecaApp {
         List<Book> bookList = bookManager.getBookList();
 
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.printTableTitle();
 
-        bookList.stream().forEach(book->{
-            bibliotecaApp.printBookInfo(book.getName(),book.getAuthor(),book.getPublishYear());
-        });
+        MenuManager menuManager = new MenuManager();
+        String inputMsg = "";
+        do {
+            System.out.println(menuManager.getMenu());
+            Scanner scanner = new Scanner(System.in);
+            inputMsg = scanner.next();
 
-    }
+            System.out.println(menuManager.handleOptionInput(inputMsg));
 
-    void printTableTitle() {
-        System.out.printf("%-10s%-10s%-10s\n","name","author","publishYear");
-    }
+        } while (!inputMsg.equals("2"));
 
-    void printBookInfo(String bookName, String author, String publishYear) {
-        System.out.printf("%-10s%-10s%-10s", bookName, author, publishYear);
-        System.out.println();
+
     }
 }
