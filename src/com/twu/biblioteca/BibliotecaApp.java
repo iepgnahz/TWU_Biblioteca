@@ -29,8 +29,19 @@ public class BibliotecaApp {
             inputMsg = scanner.next();
 
             System.out.println(menuManager.handleOptionInput(inputMsg));
+            if(inputMsg.equals("2")){
+                Scanner scannerBook = new Scanner(System.in);
+                String inputBookName = scannerBook.next();
+                System.out.println(menuManager.getCheckoutResult(bookManager.checkoutBook(inputBookName)));
+            }
 
-        } while (!inputMsg.equals("2"));
+            if(inputMsg.equals("3")){
+                Scanner scannerBook = new Scanner(System.in);
+                String inputBookName = scannerBook.next();
+                System.out.println(menuManager.getReturnResult(bookManager.returnBook(inputBookName)));
+            }
+
+        } while (!inputMsg.equals("4"));
 
 
     }

@@ -16,4 +16,23 @@ public class BookManager {
         List<Book> bookList = bookRepository.getBooks();
         return bookList;
     }
+
+    public Boolean checkoutBook(String bookName) {
+        Book book = bookRepository.getBookByName(bookName);
+        if (book != null && !book.getCheckedOut()) {
+            bookRepository.updateBookByBookName(bookName, "checkout");
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean returnBook(String bookName) {
+        Book book = bookRepository.getBookByName(bookName);
+        if (book != null && book.getCheckedOut()) {
+            bookRepository.updateBookByBookName(bookName, "return");
+            return true;
+        }
+        return false;
+
+    }
 }
