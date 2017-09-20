@@ -5,8 +5,6 @@ import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.BookRepositoryImp;
 
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class MenuManager {
     public String handleOptionInput(String inputMsg) {

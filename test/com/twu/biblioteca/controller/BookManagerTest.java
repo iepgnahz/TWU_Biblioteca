@@ -1,6 +1,5 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.controller.BookManager;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.repository.BookRepository;
 import org.junit.Before;
@@ -27,8 +26,8 @@ public class BookManagerTest {
     @Test
     public void get_book_list_should_return_book_list_when_there_are_books_in_library() throws Exception {
         List<Book> mockBookList = new ArrayList<>();
-        Book book1 = new Book("test1","author1","2017");
-        Book book2 = new Book("test2","author2","2017");
+        Book book1 = new Book("test1", "author1", "2017");
+        Book book2 = new Book("test2", "author2", "2017");
 
         mockBookList.add(book1);
         mockBookList.add(book2);
@@ -42,12 +41,51 @@ public class BookManagerTest {
     }
 
     @Test
+    public void check_out_book_should_return_true_when_book_can_be_checked() throws Exception {
+        Book book1 = new Book("test1", "author1", "2017");
+
+        Mockito.when(bookRepository.getBookByName("test1")).thenReturn(book1);
+        Mockito.when(bookRepository.updateBookByBookName("test1", "checkout")).thenReturn(true);
+
+        assertThat(bookManager.checkoutBook("test1"), is(true));
+    }
+
+    @Test
+    public void check_out_book_should_return_false_when_book_can_not_be_checked() throws Exception {
+        Book book1 = new Book("test1", "author1", "2017");
+
+        Mockito.when(bookRepository.getBookByName("test1")).thenReturn(null);
+        Mockito.when(bookRepository.updateBookByBookName("test1", "checkout")).thenReturn(false);
+
+        assertThat(bookManager.checkoutBook("test1"), is(false));
+    }
+
+    @Test
+    public void return_book_should_return_true_when_book_can_be_return() throws Exception {
+        Book book1 = new Book("test1", "author1", "2017");
+        book1.setCheckedOut(true);
+
+        Mockito.when(bookRepository.getBookByName("test1")).thenReturn(book1);
+        Mockito.when(bookRepository.updateBookByBookName("test1", "checkout")).thenReturn(true);
+
+        assertThat(bookManager.returnBook("test1"), is(true));
+    }
+
+    @Test
+    public void return_book_should_return_false_when_book_can_not_be_return() throws Exception {
+        Book book1 = new Book("test1", "author1", "2017");
+
+        Mockito.when(bookRepository.getBookByName("test1")).thenReturn(null);
+        Mockito.when(bookRepository.updateBookByBookName("test1", "checkout")).thenReturn(false);
+
+        assertThat(bookManager.returnBook("test1"), is(false));
+    }
+
+    @Test
     public void get_book_list_should_return_empty_list_when_there_is_no_book_in_library() throws Exception {
         Mockito.when(bookRepository.getBooks()).thenReturn(new ArrayList<>());
 
         List<Book> bookList = bookManager.getBookList();
         assertThat(bookList.size(), is(0));
     }
-
-
 }
