@@ -10,12 +10,4 @@ public class MenuManagerTest {
     public void setUp() throws Exception {
         menuManager = new MenuManager();
     }
-
-    @Test
-    public void get_checkout_result_when_result_true() throws Exception {
-        String result = menuManager.getCheckoutResult(true);
-        assertThat(result,is())
-    }
-
-
 }

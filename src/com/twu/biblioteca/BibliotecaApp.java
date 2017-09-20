@@ -41,7 +41,7 @@ public class BibliotecaApp {
                 System.out.println(menuManager.getReturnResult(bookManager.returnBook(inputBookName)));
             }
 
-        } while (!inputMsg.equals("4"));
+        } while (!inputMsg.equals("5"));
 
 
     }
