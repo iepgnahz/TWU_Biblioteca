@@ -16,7 +16,7 @@ public class MenuManager {
         List<Book> bookList = bookManager.getBookList();
 
         MovieRepository movieRepository = new MovieRepositoryImp();
-        MovieManager movieManager = new MovieManager();
+        MovieManager movieManager = new MovieManager(movieRepository);
         List<Movie> movies = movieManager.getMovieLists();
 
         switch (inputMsg) {
@@ -31,6 +31,8 @@ public class MenuManager {
                 String MovieMsg = movies.stream().map(movie -> getMovieInfo(movie.getName(), movie.getYear(), movie.getDirector(), movie.getRating())).reduce("", (result, subString) -> subString.concat(result));
                 return getMovieTableTitle() + MovieMsg;
             case "5":
+                return "please input the name of movie which you want check out:";
+            case "6":
                 return "Good Bye!";
             default:
                 return "Select a valid option!";
@@ -42,7 +44,7 @@ public class MenuManager {
     }
 
     public String getMenu() {
-        return String.format("%-15s%-18s%-15s%-15s%-15s\n", "1.List Books", "2.check out book", "3.return book", "4.list movies", "5.quit");
+        return String.format("%-15s%-18s%-15s%-15s%-18s%-15s\n", "1.List Books", "2.check out book", "3.return book", "4.list movies", "5.check out movie", "6.quit");
     }
 
     public String getBookTableTitle() {
@@ -64,6 +66,10 @@ public class MenuManager {
 
     public String getReturnResult(Boolean isSuccessReturn) {
         return isSuccessReturn ? "Thank you for returning the book." : "That is not a valid book to return.";
+    }
+
+    public String getCheckoutMovieResult(Boolean isSuccessReturn) {
+        return isSuccessReturn ? "Thank you! Enjoy the movie" : "That movie is not available.";
     }
 
 

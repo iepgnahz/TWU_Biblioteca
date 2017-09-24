@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface MovieRepository {
     public List<Movie> getMovies();
+    public Boolean updateMovie(String movieName);
 }

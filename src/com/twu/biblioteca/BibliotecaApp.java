@@ -2,10 +2,13 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.BookManager;
 import com.twu.biblioteca.controller.MenuManager;
+import com.twu.biblioteca.controller.MovieManager;
 import com.twu.biblioteca.controller.WelcomeSpeaker;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.BookRepositoryImp;
+import com.twu.biblioteca.repository.MovieRepository;
+import com.twu.biblioteca.repository.MovieRepositoryImp;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +21,9 @@ public class BibliotecaApp {
         BookRepository bookRepository = new BookRepositoryImp();
         BookManager bookManager = new BookManager(bookRepository);
         List<Book> bookList = bookManager.getBookList();
+
+        MovieRepository movieRepository = new MovieRepositoryImp();
+        MovieManager movieManager = new MovieManager(movieRepository);
 
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
 
@@ -41,7 +47,13 @@ public class BibliotecaApp {
                 System.out.println(menuManager.getReturnResult(bookManager.returnBook(inputBookName)));
             }
 
-        } while (!inputMsg.equals("5"));
+            if(inputMsg.equals("5")){
+                Scanner scannerMovie = new Scanner(System.in);
+                String inputMovieName = scannerMovie.next();
+                System.out.println(menuManager.getCheckoutMovieResult(movieManager.checkoutMovie(inputMovieName)));
+            }
+
+        } while (!inputMsg.equals("6"));
 
 
     }
