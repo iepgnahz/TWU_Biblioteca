@@ -33,6 +33,10 @@ public class MenuManager {
             case "5":
                 return "please input the name of movie which you want check out:";
             case "6":
+                return "please input your library number:";
+            case "7":
+                return getUserDetailTableTitle();
+            case "8":
                 return "Good Bye!";
             default:
                 return "Select a valid option!";
@@ -43,12 +47,17 @@ public class MenuManager {
         return isSuccessCheckout ? "Thank you! Enjoy the book" : "That book is not available.";
     }
 
+
     public String getMenu() {
-        return String.format("%-15s%-18s%-15s%-15s%-18s%-15s\n", "1.List Books", "2.check out book", "3.return book", "4.list movies", "5.check out movie", "6.quit");
+        return String.format("%-15s%-18s%-15s%-15s%-18s%-15s%-15s%-15s\n", "1.List Books", "2.check out book", "3.return book", "4.list movies", "5.check out movie", "6.login", "7.user detail", "8.quit");
     }
 
     public String getBookTableTitle() {
         return String.format("%-10s%-10s%-10s\n", "name", "author", "publishYear");
+    }
+
+    public String getUserDetailTableTitle() {
+        return String.format("%-15s%-10s%-15s%-10s", "library number", "name", "emailAddress", "phoneNumber");
     }
 
     public String getMovieTableTitle() {
